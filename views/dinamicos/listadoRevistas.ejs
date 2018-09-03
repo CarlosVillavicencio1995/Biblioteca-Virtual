@@ -1,0 +1,120 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-11">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>Portada</th>
+            <th>Nombre Revista</th>
+            <th>Fecha Edicion</th>
+            <th>Numero de Paginas</th>
+            <th>Idioma</th>
+            <th>ISSN</th>
+            <th>Local Edicion</th>
+            <th>Frecuencia Articulos</th>
+            <th>Accion</th>
+          </tr>
+        </thead>
+        <tbody id="tbody">
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<% if(rol=='administrador'){ %>
+  <script>
+  function test(id) {
+    console.log("id es: ",id);
+    $.post('app/borrarRevista', { id: id },
+    function(returnedData){
+         //console.log(returnedData);
+    });
+  }
+
+
+
+
+    //Aquí para cargar todos los activos
+    $(function() { // Ojo! uso jQuery, recuerda añadirla al html
+      cron(); // Lanzo cron la primera vez
+      function cron() {
+        $.ajax({
+          method: "GET",
+          url: "/app/revistas", // Podrías separar las funciones de PHP en un fichero a parte
+        }).success(function(data) {
+          console.log(data.revista.length);
+          var html = "";
+          for (var i = 0; i < data.revista.length; i++) {
+            var msg = data.revista[i];
+            console.log("aqui ", msg.issn);
+            var doc = data.docr[i];
+            html += '<tr>' +
+              '<td>' + '<img src="' + doc.imagen + '" width="100" height="150">' + '</td>' +
+              '<td>' + doc.titulo + '</td>' +
+              '<td>' + doc.fecha_edicion + '</td>' +
+              '<td>' + doc.num_pag + '</td>' +
+              '<td>' + doc.idioma + '</td>' +
+              '<td>' + msg.issn + '</td>' +
+              '<td>' + msg.local_edicion + '</td>' +
+              '<td>' + msg.frecuencia_articulos + '</td>' +
+              '<td>' +
+              '<a href="' + msg.url + '" class="btn btn-success">Leer</a>' + '<br>' +
+              '<a href="javascript:test('+doc.id+');" class="btn btn-danger">Borrar</a>' +
+              '</td>' +
+              '</tr>';
+          }
+
+          $('#tbody').html(html);
+        });
+      }
+
+
+      setInterval(function() {
+        cron();
+      }, 10000); // Lanzará la petición cada 10 segundos
+    });
+  </script>
+  <% } %>
+
+
+    <% if(rol=='usuario'){ %>
+      <script>
+        //Aquí para cargar todos los activos
+        $(function() { // Ojo! uso jQuery, recuerda añadirla al html
+          cron(); // Lanzo cron la primera vez
+          function cron() {
+            $.ajax({
+              method: "GET",
+              url: "/app/revistas", // Podrías separar las funciones de PHP en un fichero a parte
+            }).success(function(data) {
+              console.log(data.revista.length);
+              var html = "";
+              for (var i = 0; i < data.revista.length; i++) {
+                var msg = data.revista[i];
+                console.log("aqui ", msg.issn);
+                var doc = data.docr[i];
+                html += '<tr>' +
+                  '<td>' + '<img src="' + doc.imagen + '" width="100" height="150">' + '</td>' +
+                  '<td>' + doc.titulo + '</td>' +
+                  '<td>' + doc.fecha_edicion + '</td>' +
+                  '<td>' + doc.num_pag + '</td>' +
+                  '<td>' + doc.idioma + '</td>' +
+                  '<td>' + msg.issn + '</td>' +
+                  '<td>' + msg.local_edicion + '</td>' +
+                  '<td>' + msg.frecuencia_articulos + '</td>' +
+                  '<td>' +
+                  '<a href="' + msg.url + '" class="btn btn-success">Leer</a>' + '<br>' +
+                  '</td>' +
+                  '</tr>';
+              }
+
+
+              $('#tbody').html(html);
+            });
+          }
+          setInterval(function() {
+            cron();
+          }, 10000); // Lanzará la petición cada 10 segundos
+        });
+      </script>
+      <% } %>

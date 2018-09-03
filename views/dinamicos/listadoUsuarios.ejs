@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-11">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>Nº</th>
+            <th>Nombres</th>
+            <th>Apellido</th>
+            <th>Telefono</th>
+            <th>Direccion</th>
+            <th>Email</th>
+            <th>Operacion</th>
+          </tr>
+        </thead>
+        <tbody id="tbody">
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
+<script>
+function test(id) {
+  console.log("id es: ",id);
+  $.post('app/borrarUsuario', { id: id },
+  function(returnedData){
+       //console.log(returnedData);
+  });
+}
+
+  //Aquí para cargar todos los activos
+  $(function() { // Ojo! uso jQuery, recuerda añadirla al html
+    cron(); // Lanzo cron la primera vez
+    function cron() {
+      $.ajax({
+        method: "GET",
+        url: "/app/activos", // Podrías separar las funciones de PHP en un fichero a parte
+      }).success(function(persona) {
+        var html = "";
+        for (var i = 0; i < persona.length; i++) {
+          var msg = persona[i];
+          html += '<tr>' +
+          '<td>' + msg.id + '</td>' +
+            '<td>' + msg.nombres + '</td>' +
+            '<td>' + msg.apellidos + '</td>' +
+            '<td>' + msg.Telefono + '</td>' +
+            '<td>' + msg.Direccion + '</td>' +
+            '<td>' + msg.e_mail + '</td>' +
+            '<td>' + '<a href="javascript:test('+msg.id+');" class="btn btn-danger">Borrar</a>' + '</td>' +
+            '</tr>';
+        }
+
+        $('#tbody').html(html);
+      });
+    }
+
+
+    setInterval(function() {
+      cron();
+    }, 10000); // Lanzará la petición cada 10 segundos
+  });
+</script>

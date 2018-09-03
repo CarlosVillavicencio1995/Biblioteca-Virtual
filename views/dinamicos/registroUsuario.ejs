@@ -1,0 +1,57 @@
+<div class="container-fluid">
+  <div class="container-flat-form">
+    <div class="title-flat-form title-flat-blue">Registrar un nuevo Usuario</div>
+    <form autocomplete="off" method="post" action="/app/crearNuevo">
+      <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+          <div class="group-material">
+            <input type="text" class="material-control tooltips-general" name="nombres" placeholder="Nombres" required="" maxlength="70" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,70}" data-toggle="tooltip" data-placement="top" title="Ingrese sus Nombres">
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Nombres</label>
+          </div>
+          <div class="group-material">
+            <input type="text" class="material-control tooltips-general" name="apellidos" placeholder="Apellidos" required="" maxlength="70" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,70}" data-toggle="tooltip" data-placement="top" title="Ingrese sus Apellidos">
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Apellidos</label>
+          </div>
+          <div class="group-material">
+            <input type="text" class="tooltips-general material-control" name="Telefono" placeholder="Telefono" pattern="[0-9]{1,20}" required="" maxlength="20" data-toggle="tooltip" data-placement="top" title="Escribe aquí el numero de Telefono, solamente números">
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Telefono</label>
+          </div>
+
+          <div class="group-material">
+            <input type="text" class="material-control tooltips-general" name="Direccion" placeholder="Direccion" required="" maxlength="70" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,70}" data-toggle="tooltip" data-placement="top" title="Ingrese su Direccion">
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Direccion</label>
+          </div>
+
+
+          <div class="group-material">
+            <input type="email" class="material-control tooltips-general" name="email" placeholder="E-mail" maxlength="50" data-toggle="tooltip" data-placement="top" title="Escribe el Email del administrador">
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Email</label>
+          </div>
+
+          <div class="group-material">
+            <input type="password" class="material-control tooltips-general" name="contraseña" placeholder="Contraseña" required="" maxlength="200" data-toggle="tooltip" data-placement="top" title="Escribe una contraseña">
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Contraseña</label>
+          </div>
+
+          <p class="text-center">
+            <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+            <button type="submit" class="btn btn-primary"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+          </p>
+
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,120 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-11">
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th>Portada</th>
+              <th>Titulo</th>
+              <th>Autor</th>
+              <th>Fecha Edicion</th>
+              <th>Numero de Paginas</th>
+              <th>Idioma</th>
+              <th>ISBN</th>
+              <th>Editorial</th>
+              <th>Accion</th>
+            </tr>
+          </thead>
+          <tbody id="tbody">
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<% if(rol=='administrador'){ %>
+<script>
+  //Aquí para cargar todos los activos
+
+  function test(id) {
+    console.log("id es: ",id);
+    $.post('app/borrarLibro', { id: id },
+    function(returnedData){
+         //console.log(returnedData);
+    });
+  }
+
+  $(function() { // Ojo! uso jQuery, recuerda añadirla al html
+
+
+    cron(); // Lanzo cron la primera vez
+    function cron() {
+      $.ajax({
+        method: "GET",
+        url: "/app/libros", // Podrías separar las funciones de PHP en un fichero a parte
+      }).success(function(data) {
+        console.log(data.cuenta.length);
+        var html = "";
+        for (var i = 0; i < data.cuenta.length; i++) {
+          var msg = data.cuenta[i];
+          console.log("aqui ", data);
+          var doc = data.docs[i];
+          html += '<tr>' +
+            '<td>' + '<img src="' + doc.imagen + '" width="100" height="150">' +   '</td>' +
+            '<td>' + doc.titulo + '</td>' +
+            '<td>' + msg.autor + '</td>' +
+            '<td>' + doc.fecha_edicion + '</td>' +
+            '<td>' + doc.num_pag + '</td>' +
+            '<td>' + doc.idioma + '</td>' +
+            '<td>' + msg.isbn + '</td>' +
+            '<td>' + msg.editorial + '</td>' +
+            '<td>' +
+            '<a href="' + msg.url + '" class="btn btn-success">Leer</a>' + '<br>' +
+            '<a href="javascript:test('+doc.id+');" class="btn btn-danger">Borrar</a>' +
+            '</td>' +
+            '</tr>';
+        }
+
+        $('#tbody').html(html);
+      });
+    }
+    setInterval(function() {
+      cron();
+    }, 10000); // Lanzará la petición cada 10 segundos
+  });
+</script>
+<% } %>
+<% if(rol=='usuario'){ %>
+<script>
+  //Aquí para cargar todos los activos
+  $(function() { // Ojo! uso jQuery, recuerda añadirla al html
+    cron(); // Lanzo cron la primera vez
+    function cron() {
+      $.ajax({
+        method: "GET",
+        url: "/app/libros", // Podrías separar las funciones de PHP en un fichero a parte
+      }).success(function(data) {
+        console.log(data.cuenta.length);
+        var html = "";
+        for (var i = 0; i < data.cuenta.length; i++) {
+          var msg = data.cuenta[i];
+          console.log("aqui ", msg.isbn);
+          var doc = data.docs[i];
+
+          html += '<tr>' +
+            '<td>' + '<img src="' + doc.imagen + '" width="100" height="150">' +   '</td>' +
+            '<td>' + doc.titulo + '</td>' +
+            '<td>' + msg.autor + '</td>' +
+            '<td>' + doc.fecha_edicion + '</td>' +
+            '<td>' + doc.num_pag + '</td>' +
+            '<td>' + doc.idioma + '</td>' +
+            '<td>' + msg.isbn + '</td>' +
+            '<td>' + msg.editorial + '</td>' +
+            '<td>' +
+            '<a href="' + msg.url + '" class="btn btn-success">Leer</a>' + '<br>' +
+            '</td>' +
+            '</tr>';
+        }
+
+        $('#tbody').html(html);
+      });
+    }
+
+
+    setInterval(function() {
+      cron();
+    }, 10000); // Lanzará la petición cada 10 segundos
+  });
+</script>
+<% } %>

@@ -1,0 +1,16 @@
+{
+    "development":{
+        "username": "biblioteca",
+        "password": "12345",
+        "database": "biblioteca",
+        "host": "localhost",
+        "dialect": "mysql"
+    },
+    "staging":{
+        "username": "biblioteca",
+        "password": "12345",
+        "database": "biblioteca",
+        "host": "localhost",
+        "dialect": "mysql"
+    }
+}

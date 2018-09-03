@@ -1,0 +1,74 @@
+<form autocomplete="off" method="post" action="/app/crearLibro">
+    <div class="container-flat-form">
+        <div class="title-flat-form title-flat-blue">Nuevo libro</div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+                <legend><strong>Información básica</strong></legend><br>
+
+                <div class="group-material">
+                    <input type="text" class="tooltips-general material-control" name="isbn" id="isbn" placeholder="Escribe aquí el ISBN de el libro" pattern="[0-9]{1,20}" required="" maxlength="20" data-toggle="tooltip" data-placement="top" title="Escribe el ISBN de el libro, tal cual esta en el libro">
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>ISBN</label>
+                </div>
+                <div class="group-material">
+                    <input type="text" class="tooltips-general material-control" name="autor" id="<autor" placeholder="Escribe aquí el autor del libro" required="" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,70}" maxlength="70" data-toggle="tooltip" data-placement="top" title="Escribe el nombre del autor del libro">
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Autor</label>
+                </div>
+
+                <div class="group-material">
+                    <input type="text" class="tooltips-general material-control" name="titulo" id="titulo" placeholder="Escribe aquí el título o nombre del libro" required="" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,70}" maxlength="70" data-toggle="tooltip" data-placement="top" title="Escribe el título o nombre del libro">
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Título</label>
+                </div>
+                <div class="group-material">
+                    <input type="text" class="material-control tooltips-general" name="fecha_edicion" id="fecha_edicion" placeholder="Escribe aquí la fecha de edicion del libro" required="" pattern="[0-9]{1,4}" maxlength="4" data-toggle="tooltip" data-placement="top" title="Solamente números, sin espacios">
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Año Edicion</label>
+                </div>
+
+                <div class="group-material">
+                    <input type="text" class="tooltips-general material-control" name="num_pag" id="num_pag"  placeholder="Escribe aquí el numero de pagina del libro" pattern="[0-9]{1,20}" required="" maxlength="20" data-toggle="tooltip" data-placement="top" title="Escribe aquí el numero de pagina del libro, solamente números">
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Numero de Paginas</label>
+                </div>
+                <div class="group-material">
+                    <input type="text" class="tooltips-general material-control" name="idioma" id="idioma"  placeholder="Escribe aquí el idioma del libro" required="" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,70}" maxlength="70" data-toggle="tooltip" data-placement="top" title="Idioma en el cual se encuentra escrito el libro">
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Idioma</label>
+                </div>
+
+                <div class="group-material">
+                    <input type="text" class="material-control tooltips-general" name="editorial" id="editorial" placeholder="Escribe aquí la editorial del libro" required="" maxlength="70" data-toggle="tooltip" data-placement="top" title="Nombre de la Editorial del libro">
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Editorial</label>
+                </div>
+                <div class="group-material">
+                    <input type="text" class="material-control tooltips-general" name="imagen" id="imagen" placeholder="Escribe aquí la url de la imagen del libro" required=""  maxlength="200" data-toggle="tooltip" data-placement="top" title="Url imagen del libro">
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>url imagen</label>
+                </div>
+                <div class="group-material">
+                    <input type="text" class="material-control tooltips-general" name="url" id="url" placeholder="Escribe aquí la url del libro" required="" maxlength="200" data-toggle="tooltip" data-placement="top" title="Url del libro">
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>url libro</label>
+                </div>
+
+
+                <p class="text-center">
+                    <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
+                    <button type="submit" class="btn btn-primary"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+                </p>
+            </div>
+        </div>
+    </div>
+</form>
